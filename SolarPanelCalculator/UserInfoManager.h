@@ -6,21 +6,23 @@
 
 #include "Calculators.h"
 
-class CUserManager
+class CUserInfoManager
 {
 public:
-    CUserManager() = default;
-    ~CUserManager() = default;
+    CUserInfoManager() = default;
+    ~CUserInfoManager() = default;
 
-    void ShowManualInfo();
-    void TakeUserConsumedEnergy();
-    void TakeSunHoursPerDay();
+    void Start();
 
     void ShowNumberBatteries(TUnitsNumber batteries_num);
     void ShowNumberSolarPanels(TUnitsNumber solar_panels_num);
     void ShowNeededArea(float area);
 
 private:
+    void ShowManualInfo();
+    void TakeUserConsumedEnergy();
+    void TakeSunHoursPerDay();
+
     uint32_t NeededUserCapacityW{};
     uint16_t SunHoursPerDay{};
 };

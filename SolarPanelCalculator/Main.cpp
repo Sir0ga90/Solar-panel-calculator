@@ -19,7 +19,7 @@
 
 
 //CLASSES=================================================================
-//CUserManager
+//CUserInfoManager
 //CMainCalculator
 //  CBaseCalculator
 //  CBatteryCalculator
@@ -28,11 +28,11 @@
 #include <iostream>
 
 #include "Calculators.h"
-#include "UserManager.h"
+#include "UserInfoManager.h"
 
 
 int main() {
-    CUserManager user_manager{};
+    CUserInfoManager user_manager{};
 
     user_manager.TakeUserConsumedEnergy();
     user_manager.TakeSunHoursPerDay();
