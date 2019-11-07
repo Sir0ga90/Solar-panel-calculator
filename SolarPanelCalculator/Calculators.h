@@ -21,8 +21,9 @@ public:
     void SetCalculatorTypeName(std::string type_name);
     std::string GetCalculatorTypeName() const;
 
-private:
-    uint32_t NeededUserCapasity{};
+protected:
+    uint32_t NeededUserCapacityW{};
+    uint32_t UnitsNumber{};
     std::string CalculatorType;
 };
 
@@ -47,6 +48,8 @@ public:
     CSolarPanelCalculator(uint32_t needed_capacity_W, uint16_t sun_hours_per_day);
 
     TUnitsNumber GetCalculatedNumberOfUnits() override;
+
+    float GetNeededAreaForAllPanels() const;
 
 private:
     static constexpr uint32_t POWER_W = 250;    //only one type of solar panels

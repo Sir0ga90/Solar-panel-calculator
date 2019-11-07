@@ -28,20 +28,14 @@
 #include <iostream>
 
 #include "Calculators.h"
+#include "UserManager.h"
 
 
 int main() {
-    constexpr auto consumed_power = 1960u;
+    CUserManager user_manager{};
 
-    CBatteryCalculator bat_calc{consumed_power};
-
-    std::cout << bat_calc.GetCalculatorTypeName() << "\n"
-        << bat_calc.GetCalculatedNumberOfUnits() << "\n";
-
-    CSolarPanelCalculator panel_calc{consumed_power, 6};
-
-    std::cout << panel_calc.GetCalculatorTypeName() << "\n"
-        << panel_calc.GetCalculatedNumberOfUnits() << "\n";
+    user_manager.TakeUserConsumedEnergy();
+    user_manager.TakeSunHoursPerDay();
 
     return 0;
 }

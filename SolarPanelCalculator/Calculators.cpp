@@ -5,13 +5,13 @@
 
 //=================================================================================================
 CBaseCalculator::CBaseCalculator(uint32_t needed_capacity_W)
-    : NeededUserCapasity(needed_capacity_W) 
+    : NeededUserCapacityW(needed_capacity_W) 
 {}
 
 
 uint32_t CBaseCalculator::GetNeededUserCapacity() const
 {
-    return NeededUserCapasity;
+    return NeededUserCapacityW;
 }
 
 
@@ -38,10 +38,9 @@ TUnitsNumber CBatteryCalculator::GetCalculatedNumberOfUnits() {
     //Lead acid batteries only are taken into account, their usable power is 50% from its size
     const auto needed_battery_capacity = static_cast<float>(GetNeededUserCapacity() * 2);
 
-    TUnitsNumber number_of_units{};
-    number_of_units = static_cast<TUnitsNumber>(ceil(needed_battery_capacity / CAPACITY_AH));
+    UnitsNumber = static_cast<TUnitsNumber>(ceil(needed_battery_capacity / CAPACITY_AH));
 
-    return number_of_units;
+    return UnitsNumber;
 }
 
 //=================================================================================================
@@ -57,9 +56,16 @@ TUnitsNumber CSolarPanelCalculator::GetCalculatedNumberOfUnits()
 {
     const auto needed_solar_panel_power = static_cast<float>(GetNeededUserCapacity()) / SunHoursPerDay;
 
-    TUnitsNumber number_of_units{};
-    number_of_units = static_cast<TUnitsNumber>(ceil(needed_solar_panel_power / POWER_W));
+    UnitsNumber = static_cast<TUnitsNumber>(ceil(needed_solar_panel_power / POWER_W));
 
-    return number_of_units;
+    return UnitsNumber;
+}
+
+
+float CSolarPanelCalculator::GetNeededAreaForAllPanels() const
+{
+    const auto full_area = static_cast<float>(UnitsNumber * AREA_OF_ONE_UNIT);
+
+    return ceil(full_area * 100) / 100; // to truncate to 2 digits after dot
 }
 
