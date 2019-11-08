@@ -1,6 +1,7 @@
 #include <cmath>
 
 #include "Calculators.h"
+#include <cassert>
 
 
 //=================================================================================================
@@ -38,6 +39,8 @@ CSolarPanelCalculator::CSolarPanelCalculator(uint32_t needed_capacity_W, uint16_
 
 TUnitsNumber CSolarPanelCalculator::GetCalculatedNumberOfUnits()
 {
+    assert(SunHoursPerDay > 0);
+
     const auto needed_solar_panel_power = static_cast<float>(GetNeededUserCapacity()) / SunHoursPerDay;
 
     UnitsNumber = static_cast<TUnitsNumber>(ceil(needed_solar_panel_power / POWER_W));

@@ -7,7 +7,7 @@
 
 #include "Calculators.h"
 
-
+//=================================================================================================
 struct SSolarSystemInfo
 {
     TUnitsNumber BatteriesNumber;
@@ -17,6 +17,7 @@ struct SSolarSystemInfo
     friend std::ostream& operator<<(std::ostream& os, const SSolarSystemInfo& sys_info);
 };
 
+//=================================================================================================
 class CUserInfoManager
 {
 public:
@@ -37,6 +38,8 @@ private:
 
     uint32_t NeededUserCapacityW{};
     uint16_t SunHoursPerDay{};
+
+    static constexpr uint32_t MAX_POWER_OF_SOLAR_STATION_W = 400000;
 };
 
 

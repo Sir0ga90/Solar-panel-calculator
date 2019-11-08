@@ -2,7 +2,6 @@
 #define CALCULATORS
 
 #include <cstdint>
-#include <string>
 
 
 using TUnitsNumber = uint32_t;
