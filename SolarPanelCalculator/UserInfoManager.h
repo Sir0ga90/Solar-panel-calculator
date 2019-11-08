@@ -3,8 +3,19 @@
 
 
 #include <cstdint>
+#include <iostream>
 
 #include "Calculators.h"
+
+
+struct SSolarSystemInfo
+{
+    TUnitsNumber BatteriesNumber;
+    TUnitsNumber SolarPanelsNumber;
+    float AreaForSolarPanels_SqM;
+
+    friend std::ostream& operator<<(std::ostream& os, const SSolarSystemInfo& sys_info);
+};
 
 class CUserInfoManager
 {
@@ -14,14 +25,15 @@ public:
 
     void Start();
 
-    void ShowNumberBatteries(TUnitsNumber batteries_num);
-    void ShowNumberSolarPanels(TUnitsNumber solar_panels_num);
-    void ShowNeededArea(float area);
+    void ShowCalculatedInfo(const SSolarSystemInfo& system_info);
+
+    uint32_t GetUserCapacity() const;
+    uint16_t GetUserSunHours() const;
 
 private:
-    void ShowManualInfo();
+    static void ShowManualInfo();
     void TakeUserConsumedEnergy();
-    void TakeSunHoursPerDay();
+    void TakeUserSunHoursPerDay();
 
     uint32_t NeededUserCapacityW{};
     uint16_t SunHoursPerDay{};

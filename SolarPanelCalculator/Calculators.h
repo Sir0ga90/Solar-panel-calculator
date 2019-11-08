@@ -18,13 +18,9 @@ public:
     virtual TUnitsNumber GetCalculatedNumberOfUnits() = 0;
     uint32_t GetNeededUserCapacity() const;
 
-    void SetCalculatorTypeName(std::string type_name);
-    std::string GetCalculatorTypeName() const;
-
 protected:
     uint32_t NeededUserCapacityW{};
     uint32_t UnitsNumber{};
-    std::string CalculatorType;
 };
 
 
@@ -37,7 +33,9 @@ public:
     TUnitsNumber GetCalculatedNumberOfUnits() override;
 
 private:
-    static constexpr uint32_t CAPACITY_AH = 26; //only one type of batteries capacity
+    static constexpr uint32_t CAPACITY_AH = 26;
+    static constexpr uint32_t VOLTAGE = 12;
+    static constexpr uint32_t CAPACITY_WH = CAPACITY_AH * VOLTAGE; //only one type of batteries supported
 };
 
 

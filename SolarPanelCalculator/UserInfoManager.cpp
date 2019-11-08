@@ -1,13 +1,20 @@
-#include <iostream>
-
 #include "UserInfoManager.h"
+
+
+std::ostream& operator<<(std::ostream& os, const SSolarSystemInfo& sys_info) {
+    os << "Number of batteries (26AH, 12V): " << sys_info.BatteriesNumber << "\n"
+        << "Number of solar panels (250V): " << sys_info.SolarPanelsNumber << "\n"
+        << "Needed area for all panels, m²: " << sys_info.AreaForSolarPanels_SqM << "\n";
+
+    return os;
+}
 
 
 void CUserInfoManager::Start()
 {
     ShowManualInfo();
     TakeUserConsumedEnergy();
-    TakeSunHoursPerDay();
+    TakeUserSunHoursPerDay();
 }
 
 void CUserInfoManager::ShowManualInfo()
@@ -19,27 +26,27 @@ void CUserInfoManager::TakeUserConsumedEnergy()
 {
     std::cout << "Enter daily consumed energy, W: ";
     std::cin >> NeededUserCapacityW;
-    std::cout << "\n";
 }
 
-void CUserInfoManager::TakeSunHoursPerDay()
+void CUserInfoManager::TakeUserSunHoursPerDay()
 {
     std::cout << "Enter daily average sun hours in your region: ";
     std::cin >> SunHoursPerDay;
     std::cout << "\n";
 }
 
-void CUserInfoManager::ShowNumberBatteries(TUnitsNumber batteries_num)
+
+void CUserInfoManager::ShowCalculatedInfo(const SSolarSystemInfo& system_info) 
 {
-    std::cout << "Number of batteries: " << batteries_num << "\n";
+    std::cout << system_info;
 }
 
-void CUserInfoManager::ShowNumberSolarPanels(TUnitsNumber solar_panels_num)
+uint32_t CUserInfoManager::GetUserCapacity() const
 {
-    std::cout << "Number of solar panels: " << solar_panels_num << "\n";
+    return NeededUserCapacityW;
 }
 
-void CUserInfoManager::ShowNeededArea(float area)
+uint16_t CUserInfoManager::GetUserSunHours() const
 {
-    std::cout << "Area for current number of solar panels should be: " << area << "\n";
+    return SunHoursPerDay;
 }

@@ -25,17 +25,19 @@
 //  CBatteryCalculator
 //  CSolarPanelCalculator
 
-#include <iostream>
-
-#include "Calculators.h"
 #include "UserInfoManager.h"
+#include "MainCalculator.h"
 
 
 int main() {
     CUserInfoManager user_manager{};
 
-    user_manager.TakeUserConsumedEnergy();
-    user_manager.TakeSunHoursPerDay();
+    user_manager.Start();
+
+    CMainCalculator calculator(user_manager.GetUserCapacity(), user_manager.GetUserSunHours());
+
+    calculator.Calculate();
+    user_manager.ShowCalculatedInfo(calculator.GetResults());
 
     return 0;
 }
